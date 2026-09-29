@@ -1,0 +1,344 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>SoulMate · 陪伴体验与管理后台高保真 PRD</title><style>
+    :root {
+      --primary: #1d4ed8;
+      --primary-light: #dbeafe;
+      --border: #e2e8f0;
+      --bg: #f8fafc;
+      --text: #0f172a;
+      --muted: #64748b;
+      --success: #059669;
+      --warning: #d97706;
+      --danger: #dc2626;
+      --admin: #0f766e;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Microsoft YaHei", sans-serif;
+      color: var(--text);
+      line-height: 1.65;
+      background: #fff;
+      padding: 48px 24px 80px;
+      max-width: 1020px;
+      margin: 0 auto;
+      font-size: 15px;
+    }
+    h1 { font-size: 26px; font-weight: 700; margin-bottom: 4px; }
+    .subtitle { font-size: 17px; color: var(--primary); margin-bottom: 18px; }
+    h2 {
+      font-size: 18px;
+      margin: 42px 0 14px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--primary);
+    }
+    h2.admin-title { border-bottom-color: var(--admin); color: #0f766e; }
+    h3 { font-size: 15px; margin: 26px 0 10px; color: var(--primary); }
+    h3.admin { color: var(--admin); }
+    h4 { font-size: 14px; margin: 18px 0 8px; color: #334155; }
+    .meta {
+      display: flex; flex-wrap: wrap; gap: 10px 22px;
+      color: var(--muted); font-size: 13px;
+      margin-bottom: 24px; padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+    .meta strong { color: #475569; }
+    table { width: 100%; border-collapse: collapse; margin: 14px 0 22px; font-size: 14px; }
+    th, td { border: 1px solid var(--border); padding: 10px 13px; text-align: left; vertical-align: top; }
+    th { background: var(--bg); font-weight: 600; }
+    .tag {
+      display: inline-block; padding: 2px 8px; border-radius: 4px;
+      font-size: 12px; font-weight: 600;
+    }
+    .tag-must { background: #fee2e2; color: #b91c1c; }
+    .tag-should { background: #fef3c7; color: #b45309; }
+    .tag-admin { background: #ccfbf1; color: #0f766e; }
+    .wireframe {
+      background: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      border-radius: 10px;
+      margin: 16px 0 6px;
+      overflow: hidden;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+    .wireframe.admin {
+      border-color: #99f6e4;
+      background: #f0fdfa;
+    }
+    .wireframe-header {
+      background: #e2e8f0;
+      padding: 9px 16px;
+      font-size: 13px;
+      font-weight: 600;
+      color: #334155;
+      border-bottom: 1px solid #cbd5e1;
+    }
+    .wireframe.admin .wireframe-header {
+      background: #ccfbf1;
+      color: #0f766e;
+      border-bottom-color: #99f6e4;
+    }
+    .wireframe-body {
+      padding: 18px 16px;
+      font-family: "SF Mono", "Roboto Mono", Menlo, monospace;
+      font-size: 12.5px;
+      line-height: 1.45;
+      white-space: pre-wrap;
+      color: #1e293b;
+      background: #f8fafc;
+    }
+    .wireframe.admin .wireframe-body { background: #f0fdfa; }
+    .annotation {
+      background: #fff7ed;
+      border-left: 4px solid var(--warning);
+      padding: 11px 15px;
+      margin: 0 0 18px;
+      font-size: 13px;
+      color: #9a3412;
+      border-radius: 0 6px 6px 0;
+    }
+    .annotation.admin {
+      background: #f0fdfa;
+      border-left-color: var(--admin);
+      color: #115e59;
+    }
+    .note {
+      background: #eff6ff;
+      border-left: 4px solid var(--primary);
+      padding: 12px 15px;
+      margin: 14px 0;
+      font-size: 13.5px;
+      border-radius: 0 6px 6px 0;
+    }
+    .note.admin {
+      background: #f0fdfa;
+      border-left-color: var(--admin);
+    }
+    ul, ol { padding-left: 22px; margin: 8px 0 12px; }
+    li { margin: 4px 0; }
+    .module-card {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 14px 16px;
+      margin: 10px 0;
+      background: #fafafa;
+    }
+    .footer {
+      margin-top: 56px; padding-top: 18px;
+      border-top: 1px solid var(--border);
+      font-size: 12px; color: var(--muted);
+    }
+    .section-label {
+      display: inline-block;
+      background: #ccfbf1;
+      color: #0f766e;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 4px;
+      margin-bottom: 8px;
+    }
+  
+:root{--primary:#ae543c;--primary-light:#f4e5db;--border:#e5dfd5;--bg:#f7f5ef;--text:#302f2a;--muted:#77756b;--admin:#57705c;--success:#57705c}html{scroll-behavior:auto}body{max-width:1240px;background:#fbfaf6;padding:0 44px 70px;font-size:14px}button,input,select,textarea{font:inherit}button,a,input,select,textarea{outline-offset:4px}button{cursor:pointer}button:disabled{opacity:.5;cursor:not-allowed}h1{font-size:36px;letter-spacing:-1px}h2{border-bottom:1px solid var(--border);font-size:23px;padding-bottom:16px}h3.admin,h2.admin-title{color:var(--text);border-color:var(--border)}.mast{display:flex;justify-content:space-between;align-items:center;padding:23px 0;border-bottom:1px solid var(--border);margin-bottom:38px;gap:20px}.wordmark{font-family:Georgia,serif;font-size:28px;letter-spacing:-1px}.wordmark i{color:var(--primary);font-style:normal}.mast nav{display:flex;gap:22px;flex-wrap:wrap}.mast a{color:var(--muted);text-decoration:none;font-size:13px}.subtitle{color:var(--primary);margin-top:10px}.note,.note.admin{background:#f0eee6;border-color:#9ba68e;color:#525747}.section-label,.tag-admin{background:#e6eadf;color:#52674e}.annotation,.annotation.admin{background:#f3f2eb;color:#676b5f;border-left:2px solid #9ba68e}.wireframe{display:none}.prototype{border:1px solid var(--border);border-radius:18px;background:#f5f3ec;overflow:hidden;margin:20px 0 10px;box-shadow:0 12px 32px #43351b06}.appbar{background:#fffefb;padding:17px 25px;display:flex;align-items:center;gap:28px;border-bottom:1px solid var(--border)}.appbar .wordmark{font-size:21px}.appbar span{font-size:12px;color:var(--muted)}.appbar .chip{margin-left:auto}.chip{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:20px;background:#e9eddf;color:#536649;font-size:11px;white-space:nowrap}.work{padding:28px}.eyebrow{font-size:10px;letter-spacing:2px;color:#8a806f;text-transform:uppercase;margin-bottom:8px}.row{display:flex;align-items:center;justify-content:space-between;gap:18px}.row.start{align-items:flex-start}.work h4{font-size:24px;font-weight:600;color:var(--text);margin:0 0 5px;letter-spacing:-.6px}.sub{font-size:12px;color:var(--muted);margin:0}.actions{display:flex;gap:9px;flex-wrap:wrap}.btn{border:1px solid #dcd6ca;border-radius:8px;background:#fffefb;color:var(--text);padding:10px 16px;font-size:12px;font-weight:600;text-decoration:none;display:inline-block}.btn.primary{background:var(--primary);color:#fff;border-color:var(--primary)}.btn.soft{background:#e8ecdf;color:#526649;border-color:transparent}.btn.link{border:0;background:transparent;color:var(--primary);padding:6px}.grid2{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(240px,1fr);gap:20px;margin-top:25px}.panel{padding:23px;background:#fffefb;border:1px solid var(--border);border-radius:12px}.panel h5{font-size:14px;font-weight:600;margin:0 0 17px}.setting{padding:18px 0;border-bottom:1px solid #eeebe3}.setting:first-child{padding-top:0}.setting:last-child{border:0;padding-bottom:0}.label{font-size:13px;font-weight:600}.hint{font-size:11px;color:var(--muted);margin-top:5px;line-height:1.7}.switch{appearance:none;flex-shrink:0;width:38px;height:23px;border-radius:20px;background:#cbc9bf;position:relative;cursor:pointer;transition:.2s;border:0;vertical-align:middle}.switch:before{content:'';position:absolute;width:17px;height:17px;border-radius:50%;background:white;top:3px;left:3px;box-shadow:0 1px 3px #0002;transition:.2s}.switch:checked{background:#647c59}.switch:checked:before{left:18px}.choices{display:flex;gap:8px;margin-top:12px}.choice{flex:1;border:1px solid var(--border);padding:12px 9px;border-radius:8px;font-size:12px;cursor:pointer}.choice:has(input:checked){background:#f8ede5;border-color:#c4866c;color:#99482f}.choice input{accent-color:var(--primary);margin-right:4px}.choice small{display:block;font-size:10px;margin-top:4px;color:var(--muted)}input[type=time],input[type=number],select,textarea,.textinput{border:1px solid #ddd7cb;border-radius:7px;background:#fffefb;padding:9px 11px;color:var(--text);max-width:100%}input[type=number]{width:76px}input[type=checkbox]:not(.switch){accent-color:#647c59}.check{display:flex;align-items:flex-start;gap:9px;font-size:12px;margin:12px 0}.check input{margin-top:4px}.quote{font-family:Georgia,'Songti SC',serif;font-size:20px;line-height:1.8;color:#655b48;margin:20px 0}.previewcard{background:#edeede;border:0;position:relative;overflow:hidden}.flower{width:100px;height:100px;margin:8px auto 26px;position:relative;display:grid;place-items:center}.flower span{position:absolute;width:43px;height:65px;background:#c98667;border-radius:50%;transform-origin:50% 100%;bottom:50%;opacity:.82}.flower span:nth-child(2){transform:rotate(72deg)}.flower span:nth-child(3){transform:rotate(144deg)}.flower span:nth-child(4){transform:rotate(216deg)}.flower span:nth-child(5){transform:rotate(288deg)}.flower:after{content:'';width:26px;height:26px;border-radius:50%;background:#f4d7a0;z-index:1}.smallflower{transform:scale(.7);margin-bottom:0}.audit{border-top:1px solid var(--border);margin-top:20px;padding-top:12px;font-size:11px;color:var(--muted)}.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:22px}.metric{background:#fffefb;border:1px solid var(--border);border-radius:11px;padding:22px}.metric strong{display:block;font-family:Georgia,serif;font-size:38px;line-height:1.3;font-weight:400;margin:10px 0}.metric span{font-size:11px;color:var(--muted)}.chart{display:flex;align-items:flex-end;gap:12px;height:165px;padding:18px 0 25px;margin-top:20px;border-bottom:1px solid var(--border)}.chart>div{height:100%;flex:1;display:flex;align-items:center;justify-content:flex-end;flex-direction:column;position:relative}.chart i{display:block;width:65%;background:#adba96;border-radius:5px 5px 0 0}.chart small{font-size:10px;position:absolute;bottom:-22px;color:var(--muted)}.chart b{font-weight:400;font-size:10px}.distribution{display:flex;height:12px;overflow:hidden;border-radius:10px;margin:25px 0 15px}.distribution i:nth-child(1){background:#b9c4a5;width:23%}.distribution i:nth-child(2){background:#718264;width:58%}.distribution i:nth-child(3){background:#c6876d;width:19%}.tablewrap{overflow:auto;margin-top:20px}table{font-size:12px}th{background:#eeeee5}th,td{border:0;border-bottom:1px solid var(--border);padding:15px 12px}td{background:#fffefb}.status{font-size:11px;color:#5c704d}.phones{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start}.mobile-stage{padding:28px;background:#efeee4;border-radius:16px;margin:20px 0}.mobile-stage>p{margin-bottom:18px}.phone{background:#fffdf8;border:7px solid #e1ded2;border-radius:35px;max-width:380px;width:100%;margin:auto;box-shadow:0 12px 32px #70604a12;overflow:hidden}.phone-status{display:flex;justify-content:space-between;padding:12px 23px 0;font-size:10px;font-weight:600}.phone-head{padding:22px 23px 14px;display:flex;align-items:center;justify-content:space-between}.phone-head strong{font-size:17px}.phone-content{padding:10px 23px 26px;min-height:450px}.phone-content h4{font-family:Georgia,'Songti SC',serif;font-size:28px;line-height:1.45;color:#443c30;margin:12px 0}.phone-content p{font-size:12px;color:#797262;line-height:1.9}.phone .panel{padding:16px;margin:13px 0;background:#faf8f1}.phone .choices{gap:5px}.phone .choice{padding:10px 5px;font-size:11px}.full{display:block;width:100%;text-align:center}.phone-tabs{border-top:1px solid var(--border);display:flex;padding:12px 20px 18px;justify-content:space-around;gap:8px}.phone-tabs button{border:0;background:transparent;font-size:11px;color:#777368;padding:4px}.phone-tabs button.active{color:var(--primary);font-weight:700}.phone-nav{display:flex;gap:7px;flex-wrap:wrap;margin:14px 0}.phone-nav button{padding:6px 10px;font-size:11px}.mobile-page[hidden]{display:none}.memory{border-bottom:1px solid var(--border);padding:15px 0}.memory .row{gap:10px}.memory p{margin:5px 0}.memory .category{font-size:10px;color:#758166}.bubble{border-radius:0 16px 16px 16px;background:#eeeede;padding:17px;margin:18px 0;font-size:13px;line-height:1.9}.bubble.user{background:#f5e5d9;border-radius:16px 0 16px 16px;margin-left:30px}.composer{display:flex;gap:7px;margin-top:20px}.composer input{min-width:0;width:100%;font-size:12px}.error{color:#a64432;font-size:12px;min-height:20px}.devsummary{cursor:pointer;font-size:12px;color:#737562}.review-intro{background:#eeeadd;padding:22px 26px;border-radius:12px;margin:25px 0}.review-intro strong{display:block;color:#655d48;margin-bottom:5px}.review-intro p{font-size:12px;margin:0;color:#786e5b}.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#3f4939;color:white;border-radius:10px;padding:13px 24px;z-index:99;max-width:90vw;font-size:13px;box-shadow:0 5px 20px #0002}.toast[hidden]{display:none}dialog{width:min(520px,90vw);border:1px solid var(--border);border-radius:18px;padding:28px;background:#fffdf8;color:var(--text);box-shadow:0 24px 90px #30261933}dialog::backdrop{background:#37332b66}dialog h3{color:var(--text);margin:0 0 15px;font-size:22px}dialog p{font-size:13px;line-height:1.9;white-space:pre-line}dialog .actions{margin-top:24px;justify-content:flex-end}.logline{font-size:11px;padding:9px 0;border-bottom:1px solid var(--border);color:#777368}.empty{text-align:center;padding:28px;color:#777368}.module-card{background:#fffefb;border-color:var(--border)}.footer{color:#827c70}@media(max-width:780px){body{padding:0 18px 40px}h1{font-size:28px}.mast{align-items:flex-start}.mast nav{gap:10px}.phones,.grid2{grid-template-columns:1fr}.work{padding:18px}.row.start{flex-direction:column}.metrics{gap:8px}.metric{padding:13px}.metric strong{font-size:28px}.mobile-stage{padding:15px}.appbar{padding:14px;gap:14px}.appbar>span:not(.chip){display:none}.choices{flex-wrap:wrap}.choice{min-width:85px}}@media print{.mast,.phone-nav,.actions,.toast,dialog{display:none!important}.prototype,.phone,.panel{box-shadow:none;break-inside:avoid}body{max-width:none;padding:0}.grid2{grid-template-columns:1.3fr 1fr}.mobile-page[hidden]{display:block}.phone-content{min-height:0}.phones{display:block}.phone{max-width:none;border:1px solid #ddd;border-radius:8px;margin:15px 0}.prototype{break-inside:auto}.work{padding:15px}details{display:block}}
+.composer .btn{flex-shrink:0;white-space:nowrap}.phone input[type=time]{min-width:0;width:105px;padding:8px 5px}.phone .choice{min-width:65px}.phone .panel{min-width:0}@media(max-width:420px){.phone-content{padding:10px 17px 23px}.metrics{grid-template-columns:1fr}.chart{gap:5px}.chart small{font-size:8px}}
+.wordmark{display:inline-flex;align-items:baseline;white-space:nowrap;font-family:"Avenir Next","SF Pro Display","Helvetica Neue","PingFang SC",sans-serif;font-size:28px;font-weight:750;line-height:1;letter-spacing:-1.35px;color:#3c3832}
+.wordmark i{position:relative;color:var(--primary);font-style:normal;font-weight:580;letter-spacing:-1.1px}
+.wordmark i::after{content:"";position:absolute;width:5px;height:5px;right:-8px;top:-3px;border-radius:50%;background:#8d9b7f;box-shadow:0 0 0 3px #e8ebdf}
+.wordmark>span{margin-left:14px;font-family:"Avenir Next","SF Pro Text","PingFang SC",sans-serif;font-size:10px;font-weight:650;letter-spacing:.13em;color:#827a69;text-transform:uppercase}
+.appbar .wordmark{font-size:21px}
+.phone-head .wordmark{font-size:19px}
+#consumer-prototype>.row.start .eyebrow{text-transform:none}
+</style></head><body><header class="mast"><div class="wordmark">Soul<i>Mate</i><span style="font:11px sans-serif;margin-left:12px;color:#827a69">PRODUCT NOTES</span></div><nav aria-label="文档导航"><a href="#consumer">陪伴体验</a><a href="#admin">运营工作台</a><a href="#permissions">权限与验收</a></nav></header>
+
+  <h1>SoulMate Agent 产品需求文档</h1>
+  <div class="subtitle">v2.3 陪伴体验升级（C端功能 + 管理后台配置）</div>
+
+  <div class="meta">
+    <span><strong>版本</strong> v2.3</span>
+    <span><strong>状态</strong> 已上线</span>
+    <span><strong>作者</strong> Rocky</span>
+    <span><strong>规划周期</strong> 2024 Q3</span>
+  </div>
+
+  <div class="note">
+    <strong>版本定位：</strong> 本版本同时交付 C 端陪伴体验升级与对应的管理后台配置能力。后台用于运营/产品/算法同学调整默认策略、监控效果、处理异常，而无需每次发版。
+  </div>
+
+  <!-- ========== 版本范围 ========== -->
+  <h2>1. 版本范围总览</h2>
+  <div class="module-card">
+    <h4>C 端模块</h4>
+    <ul>
+      <li>主动关怀（开关、频率、勿扰、首次引导、消息）</li>
+      <li>记忆管理增强（列表、单条编辑、生效规则）</li>
+      <li>行为自定义（主动建议开关及联动）</li>
+    </ul>
+  </div>
+  <div class="module-card">
+    <h4>管理后台模块（本版新增重点）</h4>
+    <ul>
+      <li>主动关怀策略配置（默认频率、勿扰默认值、文案模板）</li>
+      <li>记忆与安全拦截规则配置</li>
+      <li>主动关怀效果监控看板</li>
+      <li>高风险触发记录与人工复核入口</li>
+    </ul>
+  </div>
+
+  <!-- ========== C端部分简要保留 ========== -->
+  <h2 id="consumer">2. C 端核心页面与高保真原型</h2>
+  <p>原文说明：C 端详细线框与规则见前一版文档，本版仅列关键页面。下方依据本版摘要补充可交互原型，未读取前一版详细规则。</p>
+  <ul>
+    <li>主动关怀首次开启引导页</li>
+    <li>主动关怀设置页（频率 + 勿扰）</li>
+    <li>我的记忆列表页 + 单条编辑页</li>
+    <li>行为边界设置页（主动建议开关）</li>
+    <li>主动关怀消息卡片</li>
+  </ul>
+
+<div class="mobile-stage" id="consumer-prototype"><div class="row start"><div><div class="eyebrow">SoulMate / YOUR EVERYDAY COMPANION</div><h3 style="margin:0;color:var(--text);font-size:24px">陪伴，按你的节奏来。</h3></div><span class="chip">C 端交互预览</span></div><div class="phone-nav"><button type="button" class="btn " data-mobile="intro">首次引导</button><button type="button" class="btn " data-mobile="settings">关怀设置</button><button type="button" class="btn " data-mobile="memories">我的记忆</button><button type="button" class="btn " data-mobile="boundaries">行为边界</button></div><div class="phones"><div class="phone"><div class="phone-status"><span>9:41</span><span>●●●  ▰</span></div><div class="phone-head"><strong class="wordmark">Soul<i>Mate</i></strong><span class="chip">你的陪伴空间</span></div><div class="phone-content"><section class="mobile-page" id="mobile-intro"><div class="flower" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div><div class="eyebrow">A GENTLE HELLO</div><h4>偶尔想起你，<br>轻轻问候一声。</h4><p>我可以在合适的时候主动关心你，记得你在意的小事。频率由你决定，安静的时间不会打扰。</p><div class="panel"><div class="row"><span class="label">默认节奏</span><span id="intro-frequency" class="hint">每 3–4 天</span></div><div class="row" style="margin-top:10px"><span class="label">勿扰时间</span><span id="intro-dnd" class="hint">22:00 — 08:00</span></div></div><button type="button" class="btn primary full" id="enable-care">开启，按我的节奏来</button><button type="button" class="btn link full" id="skip-care">暂时不用</button></section><section class="mobile-page" id="mobile-settings" hidden><div class="eyebrow">MY RHYTHM</div><h4>给关怀留一点空间</h4><p>你随时可以调整，也可以随时暂停。</p><div class="panel"><div class="row"><div class="label">主动关怀</div><input type="checkbox" class="switch" id="user-care" aria-label="个人主动关怀" ></div><div id="user-care-fields"><div class="setting"><div class="label">你喜欢的频率</div><div class="choices"><label class="choice"><input type="radio" name="user-frequency" value="较低" >较低<small>每周 1–2 次</small></label><label class="choice"><input type="radio" name="user-frequency" value="适中" checked>适中<small>每 3–4 天</small></label><label class="choice"><input type="radio" name="user-frequency" value="较高" >较高<small>几乎每天</small></label></div></div><div class="setting"><div class="label">请在这段时间保持安静</div><div style="margin-top:10px;display:flex;align-items:center;gap:8px"><input type="time" id="user-start" value="22:00" aria-label="个人勿扰开始时间"><span>—</span><input type="time" id="user-end" value="08:00" aria-label="个人勿扰结束时间"></div></div></div></div><p id="user-setting-error" class="error" role="alert"></p><button type="button" class="btn primary full" id="save-user-care">保存我的偏好</button><p id="user-status">尚未开启主动关怀</p></section><section class="mobile-page" id="mobile-memories" hidden><div class="eyebrow">LITTLE THINGS ABOUT YOU</div><h4>我记得的小事</h4><p>记忆可以修改，让我更准确地理解你。</p><div id="memory-list"></div><p class="hint">修改后用于后续对话，已发送的消息不会改变。</p></section><section class="mobile-page" id="mobile-edit" hidden><div class="eyebrow">YOUR WORDS MATTER</div><h4>这件事，现在是怎样？</h4><label for="memory-content" class="label">记忆内容</label><textarea id="memory-content" rows="5" maxlength="200" style="width:100%;margin-top:12px"></textarea><div class="hint"><span id="memory-count">0</span> / 200</div><details style="margin-top:18px"><summary class="devsummary">原型校验：模拟识别结果</summary><select id="simulated-risk" aria-label="模拟内容识别结果" style="width:100%;margin-top:10px"><option value="normal">正常内容</option><option value="harm">自伤相关</option><option value="hate">仇恨 / 暴力</option></select><p class="hint">仅用于验证流程，不是真实内容检测。</p></details><p id="memory-error" class="error" role="alert"></p><button type="button" class="btn primary full" id="save-memory">保存修改</button><button type="button" class="btn link full" data-mobile="memories">返回，不保存</button></section><section class="mobile-page" id="mobile-boundaries" hidden><div class="eyebrow">YOU SET THE BOUNDARIES</div><h4>倾听，还是一点建议？</h4><p>有时你只是想说说。我会尊重你的选择。</p><div class="panel"><div class="row"><div><div class="label">允许主动给出建议</div><div class="hint">关闭后，只倾听和表达关心</div></div><input type="checkbox" class="switch" id="user-advice" aria-label="个人允许主动建议" checked></div></div><div class="bubble" id="boundary-preview">我会认真听，也可以在合适时给你一点建议。</div><button type="button" class="btn primary full" id="save-user-advice">保存边界设置</button></section></div><div class="phone-tabs"><button data-mobile="settings">◌ 关怀</button><button data-mobile="memories">▧ 记忆</button><button data-mobile="boundaries">♡ 边界</button></div></div><div><div class="phone"><div class="phone-status"><span>9:41</span><span>●●●  ▰</span></div><div class="phone-head"><strong>与 SoulMate 聊聊</strong><span class="chip">● 在这里</span></div><div class="phone-content"><div class="flower smallflower" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div><p style="text-align:center;font-size:10px">今天 · 一声轻轻的问候</p><div class="bubble" id="care-message">早上好，昨晚休息得怎么样？最近膝盖还好吗？</div><span class="chip">主动关怀 · 消息样例</span><div id="chat-replies" aria-live="polite"></div><form class="composer" id="reply-form"><input id="reply-input" class="textinput" placeholder="想说什么，都可以…" aria-label="回复内容" maxlength="300" required><button class="btn primary" type="submit">发送</button></form><p class="hint">此处为固定回复演示，不连接 AI 服务。</p><button type="button" class="btn soft full" id="simulate-care">模拟一次主动关怀</button><p id="delivery-status" role="status">开启左侧主动关怀后，可验证投递条件。</p></div></div><details style="margin:18px auto;max-width:380px"><summary class="devsummary">C 端补充设计与验证说明</summary><p class="hint">本版仅提供 C 端页面摘要，首次引导文案、记忆样例、编辑后生效提示与对话样式均为本次补充设计。投递检查总开关、个人开关、勿扰时段、频率冷却与每日上限；首次模拟视为冷却结束。刷新重置所有演示状态。</p></details></div></div></div>
+  <!-- ========== 管理后台部分 ========== -->
+  <h2 class="admin-title" id="admin">3. 管理后台功能与页面</h2>
+
+  <div class="note admin">
+    <span class="section-label">管理后台</span><br>
+    后台面向内部角色：产品、运营、算法、客服主管。权限按角色控制，普通客服仅可查看部分监控数据。
+  </div>
+
+  <h3 class="admin">3.1 后台信息架构</h3>
+  <ul>
+    <li>陪伴策略 → 主动关怀配置</li>
+    <li>陪伴策略 → 行为边界与建议开关默认值</li>
+    <li>记忆与安全 → 拦截规则管理</li>
+    <li>数据监控 → 主动关怀效果看板</li>
+    <li>安全中心 → 高风险触发记录</li>
+  </ul>
+
+  <!-- 3.2 主动关怀策略配置 -->
+  <h3 class="admin">3.2 主动关怀策略配置页</h3>
+  <div class="prototype" id="prototype-1"><div class="appbar"><div class="wordmark">Soul<i>Mate</i><span> / studio</span></div><span>陪伴体验工作台</span><span class="chip">● 演示环境</span></div><div class="work"><div class="row start"><div><div class="eyebrow">COMPANION STUDIO / 01</div><h4>让关怀，恰到好处</h4><p class="sub">陪伴策略 / 主动关怀配置</p></div><div class="actions"><button type="button" class="btn " id="save-draft">保存草稿</button><button type="button" class="btn primary" id="publish-care">发布配置</button></div></div><div class="grid2"><div class="panel" id="care-form"><div class="setting row"><div><div class="label">主动关怀</div><div class="hint">关闭并发布后，停止产生新的关怀任务</div></div><input type="checkbox" class="switch" id="global-care" aria-label="全站主动关怀" checked></div><div class="setting"><div class="label">新用户的默认频率</div><div class="choices"><label class="choice"><input type="radio" name="admin-frequency" value="较低" >较低<small>每周 1–2 次</small></label><label class="choice"><input type="radio" name="admin-frequency" value="适中" checked>适中<small>每 3–4 天</small></label><label class="choice"><input type="radio" name="admin-frequency" value="较高" >较高<small>几乎每天</small></label></div></div><div class="setting"><div class="label">把安静的时间留给用户</div><div class="row" style="justify-content:flex-start;margin-top:12px"><input id="admin-start" type="time" value="22:00" aria-label="默认勿扰开始时间"><span>至</span><input id="admin-end" type="time" value="08:00" aria-label="默认勿扰结束时间"></div><div class="hint">跨午夜生效 · 用户个人设置优先</div></div><div class="setting row"><div><div class="label">每日发送上限</div><div class="hint">每位用户 / 自然日，硬限制</div></div><label><input id="daily-limit" type="number" min="1" max="10" value="1" required aria-label="每日发送上限"> 条</label></div><div class="setting"><div class="label">内容风格</div><label class="check"><input id="short-copy" type="checkbox" checked>简短表达，不超过 2 句</label><label class="check"><input id="use-memory" type="checkbox" checked>优先引用长期记忆</label><label class="check"><input id="no-advice" type="checkbox" checked>默认不提供具体行动建议</label></div><p id="care-error" class="error" role="alert"></p></div><div><div class="panel previewcard"><div class="eyebrow">A LITTLE CARE</div><div class="flower" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div><div class="quote">“早上好，昨晚休息得怎么样？最近膝盖还好吗？”</div><p class="hint">只读文案参考 · 实际内容由模型生成</p><span class="chip">温柔、简短、有边界</span></div><div class="panel" style="margin-top:16px"><h5>生效范围</h5><p class="hint">发布后作用于新产生的候选任务。默认频率与勿扰仅用于新用户，已有个人偏好优先。</p><div id="care-state" class="audit">当前版本 v2.3 · 暂无未发布草稿</div><div id="care-published" class="hint">原文示例发布：2024-04-18 15:32</div></div></div></div></div></div>
+  <div class="annotation admin">
+    <strong>【后台注释】</strong><br>
+    • 支持「草稿 → 发布」流程，发布后对新产生的候选任务生效。<br>
+    • 「功能总开关」用于紧急情况下一键停用全站主动关怀。<br>
+    • 默认频率与勿扰可被用户个人设置覆盖。<br>
+    • 修改需有操作日志，方便回溯。
+  </div>
+
+  <!-- 3.3 行为边界默认配置 -->
+  <h3 class="admin">3.3 行为边界默认配置</h3>
+  <div class="prototype" id="prototype-2"><div class="appbar"><div class="wordmark">Soul<i>Mate</i><span> / studio</span></div><span>陪伴体验工作台</span><span class="chip">● 演示环境</span></div><div class="work"><div class="row start"><div><div class="eyebrow">COMPANION STUDIO / 02</div><h4>关心，也尊重边界</h4><p class="sub">陪伴策略 / 行为边界默认值</p></div><div class="actions"><button type="button" class="btn primary" id="save-boundary">保存并生效</button></div></div><div class="grid2"><div class="panel"><div class="setting row"><div><div class="label">允许主动给出建议</div><div class="hint">新用户默认值 · 个人设置优先</div></div><input type="checkbox" class="switch" id="default-advice" aria-label="新用户默认允许建议" checked></div><div class="setting"><h5>主动关怀联动规则</h5><label class="check"><input type="checkbox" checked disabled>用户关闭建议后，不出现具体行动建议</label><label class="check"><input type="checkbox" checked disabled>可以保留「注意休息」等概括性关心</label><p class="hint">以上为固定联动约束，不能通过默认值绕过。</p></div><div class="audit" id="boundary-state">当前默认：开启</div></div><div class="panel previewcard"><div class="eyebrow">SPACE TO BE YOURSELF</div><div class="quote">“我在这里。<br>你可以慢慢说。”</div><p class="hint">在用户希望倾诉时，先倾听；是否提供建议，由用户决定。</p></div></div></div></div>
+  <div class="annotation admin">
+    <strong>【后台注释】</strong><br>
+    新用户的默认开关状态在此配置。用户个人修改后以用户设置为准。
+  </div>
+
+  <!-- 3.4 记忆与安全拦截规则 -->
+  <h3 class="admin">3.4 记忆与安全拦截规则配置</h3>
+  <div class="prototype" id="prototype-3"><div class="appbar"><div class="wordmark">Soul<i>Mate</i><span> / studio</span></div><span>陪伴体验工作台</span><span class="chip">● 演示环境</span></div><div class="work"><div class="row start"><div><div class="eyebrow">COMPANION STUDIO / 03</div><h4>让记忆值得信任</h4><p class="sub">记忆与安全 / 拦截规则管理</p></div><div class="actions"><button type="button" class="btn primary" id="save-rules">保存规则</button></div></div><div class="grid2"><div class="panel"><h5>当前拦截规则</h5><div class="setting row"><div><div class="label">空内容</div><div class="hint">避免保存没有内容的记忆</div></div><input type="checkbox" class="switch" id="rule-empty" aria-label="空内容拦截" checked></div><div class="setting row"><div><div class="label">自伤 / 自杀相关表达</div><div class="hint">识别由算法服务维护</div></div><input type="checkbox" class="switch" id="rule-harm" aria-label="自伤相关表达拦截" checked></div><div class="setting row"><div><div class="label">仇恨、歧视与极端暴力</div><div class="hint">不在前端实现真实内容识别</div></div><input type="checkbox" class="switch" id="rule-hate" aria-label="仇恨暴力内容拦截" checked></div><div class="setting row"><div class="label" style="color:#999">其他自定义规则</div><span class="chip">预留</span></div></div><div class="panel"><h5><label for="rule-message">拦截提示文案</label></h5><textarea id="rule-message" rows="3" maxlength="100" style="width:100%">该内容无法保存，请修改后重试。</textarea><p class="hint">色情与性暗示内容按原文产品策略，不纳入本拦截范围。</p><p class="hint">规则开关与文案可在上方 C 端记忆编辑中验证；风险类别使用显式测试选项模拟。</p><div class="audit" id="rule-state">3 项规则已启用</div><p id="rule-error" class="error" role="alert"></p></div></div></div></div>
+  <div class="annotation admin">
+    <strong>【后台注释】</strong><br>
+    • 规则变更需记录操作人与时间。<br>
+    • 具体识别模型与阈值由算法维护，后台只控制「是否启用」和提示文案。
+  </div>
+
+  <!-- 3.5 效果监控看板 -->
+  <h3 class="admin">3.5 主动关怀效果监控看板</h3>
+  <div class="prototype" id="prototype-4"><div class="appbar"><div class="wordmark">Soul<i>Mate</i><span> / studio</span></div><span>陪伴体验工作台</span><span class="chip">● 演示环境</span></div><div class="work"><div class="row start"><div><div class="eyebrow">COMPANION STUDIO / 04</div><h4>看见关怀的回应</h4><p class="sub">数据监控 / 主动关怀效果 · 全部为演示数据</p></div><div class="actions"><select id="dashboard-range" aria-label="看板时间范围"><option value="7">近 7 天</option><option value="14">近 14 天（模拟）</option></select><button type="button" class="btn " id="export-data">导出当前汇总</button></div></div><div class="metrics"><div class="metric"><span>发送总量</span><strong id="metric-send">12,480</strong><span>所选时间范围内</span></div><div class="metric"><span>点击 / 回复率</span><strong id="metric-rate">18.6%</strong><span>沿用原文指标，合并口径待定义</span></div><div class="metric"><span>关闭主动关怀人数</span><strong id="metric-close">326</strong><span>按用户去重 · 演示口径</span></div></div><div class="grid2"><div class="panel"><div class="row"><h5>发送量趋势</h5><span class="hint">补充模拟分布</span></div><div id="send-chart" class="chart" role="img" aria-label="近七天发送量趋势"></div><div class="audit">近期异常：无（演示状态）</div></div><div class="panel"><h5>用户希望怎样被陪伴</h5><div class="distribution" aria-label="较低23%，适中58%，较高19%"><i></i><i></i><i></i></div><div class="row hint"><span>较低 23%</span><span>适中 58%</span><span>较高 19%</span></div><div class="audit"><span id="disturb-ratio">约 41%</span> 的关闭原因与打扰相关</div><p class="hint">观察频率与打扰反馈，帮助调整策略。原文未给出趋势明细，柱状图为补充演示。</p></div></div></div></div>
+  <div class="annotation admin">
+    <strong>【后台注释】</strong><br>
+    核心关注：发送量、互动率、因打扰导致的关闭量。用于判断是否需要继续下调默认频率或优化文案。
+  </div>
+
+  <!-- 3.6 高风险触发记录 -->
+  <h3 class="admin">3.6 高风险触发记录与复核</h3>
+  <div class="prototype" id="prototype-5"><div class="appbar"><div class="wordmark">Soul<i>Mate</i><span> / studio</span></div><span>陪伴体验工作台</span><span class="chip">● 演示环境</span></div><div class="work"><div class="row start"><div><div class="eyebrow">COMPANION STUDIO / 05</div><h4>每一次信号，都被认真对待</h4><p class="sub">安全中心 / 高风险触发记录 · 脱敏演示</p></div><div class="actions"><select id="risk-range" aria-label="风险记录时间"><option value="7">近 7 天</option><option value="1">近 1 天</option></select><select id="risk-type" aria-label="风险类型"><option value="all">全部类型</option><option value="harm">自伤相关</option><option value="violence">极端暴力（无记录）</option></select></div></div><div class="tablewrap"><table><thead><tr><th>触发时间</th><th>记录编号</th><th>类型</th><th>处理结果</th><th>复核状态</th><th>操作</th></tr></thead><tbody id="risk-rows"></tbody></table></div><p class="hint">只展示必要审计信息；详情不包含具体危险表达。演示时间窗口截至 2024-06-12。</p><details style="margin-top:22px"><summary class="devsummary">查看本次演示操作日志</summary><div id="operation-logs"><p class="hint">暂无操作记录</p></div></details></div></div>
+  <div class="annotation admin">
+    <strong>【后台注释】</strong><br>
+    • 仅展示必要审计信息，不展示可能造成二次风险的具体表达内容。<br>
+    • 支持按时间、类型筛选，方便安全与产品复盘。
+  </div>
+
+  <!-- ========== 权限与发布 ========== -->
+  <h2 class="admin-title" id="permissions">4. 后台权限与发布流程</h2>
+  <table>
+    <tr>
+      <th style="width:140px">角色</th>
+      <th>可操作范围</th>
+    </tr>
+    <tr>
+      <td>产品负责人</td>
+      <td>全部配置页读写 + 发布 + 看板</td>
+    </tr>
+    <tr>
+      <td>运营</td>
+      <td>看板查看、部分文案建议（无发布权）</td>
+    </tr>
+    <tr>
+      <td>算法</td>
+      <td>拦截规则协同、效果数据查看</td>
+    </tr>
+    <tr>
+      <td>客服主管</td>
+      <td>高风险记录查看（只读）</td>
+    </tr>
+  </table>
+
+  <p><strong>发布流程：</strong> 配置修改 → 保存草稿 → 二次确认 → 发布生效 → 写操作日志。</p>
+
+  <!-- ========== 验收补充 ========== -->
+  <h2>5. 管理后台验收要点（补充）</h2>
+  <ol>
+    <li>主动关怀总开关关闭后，全站不再产生新的主动消息。</li>
+    <li>默认频率与勿扰变更后，新用户生效；老用户仍以个人设置为准。</li>
+    <li>拦截规则启停与提示文案修改后，C 端编辑记忆时行为符合预期。</li>
+    <li>看板数据与实际发送/关闭行为大致吻合（允许统计延迟）。</li>
+    <li>高风险记录可按时间查看，详情不含不当内容展示。</li>
+    <li>所有关键配置变更有操作人与时间日志。</li>
+  </ol>
+
+  <!-- ========== 协作 ========== -->
+  <h2>6. 后台相关协作</h2>
+  <table>
+    <tr><th style="width:130px">角色</th><th>职责</th></tr>
+    <tr><td>产品负责人</td><td>后台信息架构、配置项定义、权限划分、验收标准</td></tr>
+    <tr><td>前端（后台）</td><td>配置页、看板、记录列表与详情实现</td></tr>
+    <tr><td>后端</td><td>配置存储与发布、日志、数据统计接口、权限控制</td></tr>
+    <tr><td>算法</td><td>拦截效果与主动关怀效果数据口径对齐</td></tr>
+  </table>
+
+<dialog id="dialog" aria-labelledby="dialog-title"><h3 id="dialog-title"></h3><p id="dialog-body"></p><div id="dialog-actions" class="actions"></div></dialog><div id="toast" class="toast" role="status" hidden></div><script>
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const state={global:true,frequency:'适中',start:'22:00',end:'08:00',limit:1,short:true,memory:true,noAdvice:true,defaultAdvice:true,userEnabled:false,userFrequency:'适中',userStart:'22:00',userEnd:'08:00',advice:true,personal:false,personalAdvice:false,rules:{empty:true,harm:true,hate:true},message:'该内容无法保存，请修改后重试。',draft:null,logs:[],sent:0,lastSent:0,sentDay:'',reviewed:new Set()};
+const memories=[{category:'日常偏好',text:'喜欢在安静的晚上阅读，周末偶尔去公园散步。'},{category:'最近在意',text:'最近膝盖有些不舒服，希望被温柔地关心。'},{category:'陪伴方式',text:'心情低落时，先听我说完，不急着给建议。'}];let editing=0;
+function toast(t){$('#toast').textContent=t;$('#toast').hidden=false;clearTimeout(window.toastTimer);window.toastTimer=setTimeout(()=>$('#toast').hidden=true,3500)}
+function log(t){state.logs.unshift(new Date().toLocaleString('zh-CN',{hour12:false})+' · 产品负责人（演示） · '+t);$('#operation-logs').replaceChildren(...state.logs.map(x=>{const p=document.createElement('div');p.className='logline';p.textContent=x;return p}))}
+function dialog(title,body,confirm,callback){$('#dialog-title').textContent=title;$('#dialog-body').textContent=body;$('#dialog-actions').replaceChildren();const close=document.createElement('button');close.className='btn';close.textContent=confirm?'取消':'关闭';close.onclick=()=>$('#dialog').close();$('#dialog-actions').append(close);if(confirm){const b=document.createElement('button');b.className='btn primary';b.textContent=confirm;b.onclick=()=>{$('#dialog').close();callback()};$('#dialog-actions').append(b)}$('#dialog').showModal()}
+function mobile(page){$$('.mobile-page').forEach(x=>x.hidden=x.id!=='mobile-'+page);$$('[data-mobile]').forEach(x=>{x.classList.toggle('active',x.dataset.mobile===page);x.setAttribute('aria-pressed',String(x.dataset.mobile===page))})}
+$$('[data-mobile]').forEach(b=>b.onclick=()=>mobile(b.dataset.mobile));
+function frequency(name){return $(`input[name="${name}"]:checked`).value}
+function careConfig(){return {global:$('#global-care').checked,frequency:frequency('admin-frequency'),start:$('#admin-start').value,end:$('#admin-end').value,limit:Number($('#daily-limit').value),short:$('#short-copy').checked,memory:$('#use-memory').checked,noAdvice:$('#no-advice').checked}}
+function validate(c){let e=!c.start||!c.end?'请填写完整的勿扰时间。':c.start===c.end?'勿扰开始与结束时间不能相同。':!Number.isInteger(c.limit)||c.limit<1||c.limit>10?'演示输入范围：每日上限为 1–10 的整数。':'';$('#care-error').textContent=e;return !e}
+$('#save-draft').onclick=()=>{const c=careConfig();if(!validate(c))return;state.draft=c;$('#care-state').textContent='已保存草稿 · 尚未发布';log('保存主动关怀草稿');toast('草稿已保存，现有配置尚未改变')};
+$('#publish-care').onclick=()=>{const c=careConfig();if(!validate(c))return;if(!state.draft||JSON.stringify(c)!==JSON.stringify(state.draft)){toast('请先保存当前修改为草稿');return}dialog('发布这份关怀配置？',`全站主动关怀：${c.global?'开启':'关闭'}\n新用户频率：${c.frequency}\n默认勿扰：${c.start}—${c.end}\n每日上限：${c.limit} 条\n\n仅更新本页演示状态，新产生的候选任务使用此配置。`,'确认发布',()=>{Object.assign(state,c);state.draft=null;$('#care-state').textContent='配置已发布 · 当前演示会话生效';$('#care-published').textContent='本次演示发布：'+new Date().toLocaleString('zh-CN');syncDefaults();log('发布主动关怀配置');toast('已发布演示配置')})};
+function syncDefaults(){if(!state.personal){state.userFrequency=state.frequency;state.userStart=state.start;state.userEnd=state.end;$(`input[name="user-frequency"][value="${state.frequency}"]`).checked=true;$('#user-start').value=state.start;$('#user-end').value=state.end}if(!state.personalAdvice){state.advice=state.defaultAdvice;$('#user-advice').checked=state.advice;boundaryPreview()}$('#intro-frequency').textContent=state.frequency;$('#intro-dnd').textContent=state.start+' — '+state.end}
+$('#save-boundary').onclick=()=>{state.defaultAdvice=$('#default-advice').checked;syncDefaults();$('#boundary-state').textContent='已生效 · 新用户默认：'+(state.defaultAdvice?'开启':'关闭');log('保存行为边界默认值');toast('默认值已保存，个人设置优先')};
+$('#save-rules').onclick=()=>{const t=$('#rule-message').value.trim();$('#rule-error').textContent=t?'':'请填写拦截提示文案。';if(!t)return;state.rules={empty:$('#rule-empty').checked,harm:$('#rule-harm').checked,hate:$('#rule-hate').checked};state.message=t;$('#rule-state').textContent=Object.values(state.rules).filter(Boolean).length+' 项规则已启用 · 本次演示生效';log('保存记忆拦截规则');toast('规则已保存，可在 C 端验证')};
+function userFields(){$$('#user-care-fields input').forEach(x=>x.disabled=!$('#user-care').checked)}$('#user-care').onchange=userFields;
+$('#enable-care').onclick=()=>{state.userEnabled=true;$('#user-care').checked=true;userFields();$('#user-status').textContent='主动关怀已开启，可继续调整偏好';mobile('settings');toast('已开启主动关怀')};
+$('#skip-care').onclick=()=>{state.userEnabled=false;$('#user-care').checked=false;userFields();$('#user-status').textContent='已暂停主动关怀';mobile('settings')};
+$('#save-user-care').onclick=()=>{let a=$('#user-start').value,b=$('#user-end').value;const error=!a||!b||a===b?'请设置完整且不同的起止时间。':'';$('#user-setting-error').textContent=error;if(error)return;state.userEnabled=$('#user-care').checked;state.userFrequency=frequency('user-frequency');state.userStart=a;state.userEnd=b;state.personal=true;$('#user-status').textContent=state.userEnabled?`已保存 · ${state.userFrequency}频率 · ${a}—${b} 勿扰`:'已暂停主动关怀；你的其他偏好已保留。';toast('个人偏好已保存')};
+function boundaryPreview(){$('#boundary-preview').textContent=$('#user-advice').checked?'我会认真听，也可以在合适时给你一点建议。':'我在这里。你可以慢慢说，我会认真听。'}$('#user-advice').onchange=boundaryPreview;
+$('#save-user-advice').onclick=()=>{state.advice=$('#user-advice').checked;state.personalAdvice=true;toast('陪伴边界已保存')};
+function renderMemories(){$('#memory-list').replaceChildren(...memories.map((m,i)=>{const el=document.createElement('div');el.className='memory';const row=document.createElement('div');row.className='row';const c=document.createElement('span');c.className='category';c.textContent=m.category;const b=document.createElement('button');b.className='btn link';b.textContent='编辑';b.setAttribute('aria-label','编辑'+m.category);b.onclick=()=>{editing=i;$('#memory-content').value=m.text;$('#memory-count').textContent=m.text.length;$('#memory-error').textContent='';$('#simulated-risk').value='normal';mobile('edit')};row.append(c,b);const p=document.createElement('p');p.textContent=m.text||'（空记忆，空内容拦截已关闭）';el.append(row,p);return el}))}
+$('#memory-content').oninput=()=>$('#memory-count').textContent=$('#memory-content').value.length;
+$('#save-memory').onclick=()=>{let t=$('#memory-content').value.trim(),risk=$('#simulated-risk').value;if((!t&&state.rules.empty)||(risk!=='normal'&&state.rules[risk])){$('#memory-error').textContent=state.message;return}memories[editing].text=t;renderMemories();mobile('memories');toast('记忆已更新，将用于后续对话')};
+$('#reply-form').onsubmit=e=>{e.preventDefault();const t=$('#reply-input').value.trim();if(!t)return;const p=document.createElement('div');p.className='bubble user';p.textContent=t;const q=document.createElement('div');q.className='bubble';q.textContent='我听到了。愿意的话，可以再和我说一点。（固定演示回复）';$('#chat-replies').append(p,q);$('#reply-input').value=''};
+$('#simulate-care').onclick=()=>{const now=new Date(),day=now.toLocaleDateString();if(state.sentDay!==day){state.sent=0;state.sentDay=day}const min=now.getHours()*60+now.getMinutes(),toMin=t=>Number(t.split(':')[0])*60+Number(t.split(':')[1]),a=toMin(state.userStart),b=toMin(state.userEnd),quiet=a>b?min>=a||min<b:min>=a&&min<b;const cooldown={'较低':4,'适中':3,'较高':1}[state.userFrequency]*86400000;let reason=!state.global?'全站主动关怀已关闭':!state.userEnabled?'请先开启个人主动关怀':quiet?'当前处于个人勿扰时段':state.sent>=state.limit?'已达到每日发送上限':Date.now()-state.lastSent<cooldown?'尚未到下一次关怀时间（频率冷却）':'';if(reason){$('#delivery-status').textContent='未投递：'+reason;return}state.sent++;state.lastSent=Date.now();$('#care-message').textContent=state.memory&&memories[1].text?'想起你之前提到：“'+memories[1].text+'” 今天感觉怎么样？':'今天过得怎么样？想说的时候，我都在。';if(state.advice&&!state.noAdvice){$('#care-message').textContent=state.short?'今天过得怎么样？如果愿意，可以留五分钟写下今天的感受。':$('#care-message').textContent+' 如果愿意，可以留五分钟写下今天的感受。'}$('#delivery-status').textContent='已模拟投递 · 今日 '+state.sent+' / '+state.limit+' 条';toast('演示消息已更新')};
+const sets={'7':{send:12480,rate:'18.6%',close:326,ratio:'约 41%',values:[1420,1680,1580,1860,2140,1760,2040],labels:['06.06','06.07','06.08','06.09','06.10','06.11','06.12']},'14':{send:24890,rate:'18.2%',close:641,ratio:'约 39%',values:[3080,3420,3760,3950,3280,3460,3940],labels:['05.30–31','06.01–02','03–04','05–06','07–08','09–10','11–12']}};
+function dashboard(){const d=sets[$('#dashboard-range').value];$('#metric-send').textContent=d.send.toLocaleString('en-US');$('#metric-rate').textContent=d.rate;$('#metric-close').textContent=d.close;$('#disturb-ratio').textContent=d.ratio;$('#send-chart').setAttribute('aria-label','演示发送量：'+d.values.join('、'));$('#send-chart').innerHTML=d.values.map((n,i)=>`<div><b>${n}</b><i style="height:${n/Math.max(...d.values)*85}%"></i><small>${d.labels[i]}</small></div>`).join('')}
+$('#dashboard-range').onchange=dashboard;
+$('#export-data').onclick=()=>{const d=sets[$('#dashboard-range').value];const csv='\uFEFF数据性质,范围,发送总量,点击回复率,关闭人数\n演示数据,近'+$('#dashboard-range').value+'天,'+d.send+','+d.rate+','+d.close+'\n';const url=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'}));const a=document.createElement('a');a.href=url;a.download='SoulMate-demo-summary.csv';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);toast('已导出当前演示汇总')};
+const risks=[{id:'SR-0612-01',time:'2024-06-12 21:08',continued:'是'},{id:'SR-0611-02',time:'2024-06-11 14:22',continued:'否'}];
+function riskDetails(r){const reviewed=state.reviewed.has(r.id);dialog('记录 '+r.id,`触发时间：${r.time}\n类型：自伤相关\n摘要：识别到高风险信号，原始表达不展示。\n求助提醒：已发送固定提醒\n用户后续继续对话：${r.continued}\n复核状态：${reviewed?'已复核':'待复核'}\n\n仅为脱敏样例；复核不会改变原处理结果。`,reviewed?null:'标记已复核',()=>{state.reviewed.add(r.id);log('复核 '+r.id);renderRisks();toast('已记录演示复核结果')})}
+function renderRisks(){const list=$('#risk-type').value==='violence'?[]:risks.filter((r,i)=>$('#risk-range').value==='7'||i===0);$('#risk-rows').replaceChildren();list.forEach(r=>{const tr=document.createElement('tr');[r.time,r.id,'自伤相关','已发送固定提醒',state.reviewed.has(r.id)?'已复核':'待复核'].forEach(t=>{const td=document.createElement('td');td.textContent=t;tr.append(td)});const td=document.createElement('td');const b=document.createElement('button');b.className='btn link';b.textContent='查看详情';b.onclick=()=>riskDetails(r);td.append(b);tr.append(td);$('#risk-rows').append(tr)});if(!list.length){const tr=document.createElement('tr'),td=document.createElement('td');td.colSpan=6;td.className='empty';td.textContent='当前筛选下暂无记录';tr.append(td);$('#risk-rows').append(tr)}}
+$('#risk-range').onchange=renderRisks;$('#risk-type').onchange=renderRisks;
+renderMemories();dashboard();renderRisks();userFields();boundaryPreview();mobile('intro');
+</script></body></html>
